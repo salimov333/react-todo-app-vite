@@ -17,7 +17,7 @@ jobs:
         run: npm install
 
       - name: Set environment variable for deployment
-        run: echo "REACT_APP_DEPLOY_ENV=gh-pages" >> $GITHUB_ENV
+        run: echo "VITE_DEPLOY_ENV=gh-pages" >> $GITHUB_ENV
 
       - name: Build the project
         run: npm run build
