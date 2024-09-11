@@ -1,0 +1,17 @@
+.App {
+  background-color: #d2e0f7;
+  color: #000000;
+  min-height: 100dvh;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.list-item{
+  background-color: #abb7c9;
+}
