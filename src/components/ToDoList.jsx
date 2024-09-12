@@ -42,7 +42,7 @@ const ToDoList = () => {
   return (
     <>
       <h1 className="my-5">
-        Todo Liste v.1.1.0{" "}
+        Todo Liste v.1.2.0{" "}
         <FontAwesomeIcon icon={faSun} size="1x" color="#616469" spin />
       </h1>
 
