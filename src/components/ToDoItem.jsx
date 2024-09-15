@@ -10,6 +10,7 @@ const ToDoItem = ({ todo, handleToggle, handleDelete }) => {
         style={{
           textDecoration: `${todo.complete ? "line-through" : "none"}`,
           color: `${todo.complete ? "red" : "initial"}`,
+          cursor: "pointer",
         }}
       >
         {/* Direkte Verwendung des Form.Check zur besseren Kontrolle */}
@@ -18,7 +19,11 @@ const ToDoItem = ({ todo, handleToggle, handleDelete }) => {
           id={id}
           onChange={() => handleToggle(todo.id)}
         />
-        <Form.Label htmlFor={id} className="mb-0 ms-2">
+        <Form.Label
+          htmlFor={id}
+          className="mb-0 ms-2"
+          style={{ cursor: "inherit" }}
+        >
           {todo.text}
         </Form.Label>
       </div>
