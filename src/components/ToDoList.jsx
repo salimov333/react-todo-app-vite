@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { Form, Button, InputGroup, ListGroup } from "react-bootstrap";
@@ -27,15 +27,18 @@ const ToDoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, dispatch] = useReducer(reducer, []);
 
+  const inputRef = useRef(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    // console.log("Form submitted");
     if (inputValue.trim()) {
       dispatch({ type: "ADD_TODO", text: inputValue.trim() });
       setInputValue("");
     } else {
       alert("Please enter a task");
     }
+    inputRef.current.focus();
   };
 
   const handleToggle = (id) => {
@@ -58,6 +61,7 @@ const ToDoList = () => {
             placeholder="Neues Todo eintagen"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            ref={inputRef}
           />
           <Button variant="success" type="submit">
             Hinzufügen
@@ -67,7 +71,12 @@ const ToDoList = () => {
 
       <ListGroup>
         {todos.map((todo) => (
-          <ToDoItem key={todo.id} todo={todo} handleToggle={handleToggle} handleDelete={handleDelete}/>
+          <ToDoItem
+            key={todo.id}
+            todo={todo}
+            handleToggle={handleToggle}
+            handleDelete={handleDelete}
+          />
         ))}
       </ListGroup>
       <p className="my-3">
