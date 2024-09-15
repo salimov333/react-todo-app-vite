@@ -9,12 +9,15 @@ function reducer(state, action) {
     case "ADD_TODO":
       return [
         ...state,
-        { id: crypto.randomUUID(), text: action.payload, complete: false },
+        { id: crypto.randomUUID(), text: action.text, complete: false },
       ];
     case "TOGGLE_TODO":
       return state.map((todo) =>
         todo.id === action.id ? { ...todo, complete: !todo.complete } : todo
       );
+    case "DELETE_TODO":
+      return state.filter((todo) => todo.id !== action.id);
+
     default:
       return state;
   }
@@ -28,7 +31,7 @@ const ToDoList = () => {
     e.preventDefault();
     console.log("Form submitted");
     if (inputValue.trim()) {
-      dispatch({ type: "ADD_TODO", payload: inputValue.trim() });
+      dispatch({ type: "ADD_TODO", text: inputValue.trim() });
       setInputValue("");
     } else {
       alert("Please enter a task");
@@ -38,11 +41,14 @@ const ToDoList = () => {
   const handleToggle = (id) => {
     dispatch({ type: "TOGGLE_TODO", id: id });
   };
+  const handleDelete = (id) => {
+    dispatch({ type: "DELETE_TODO", id: id });
+  };
 
   return (
     <>
       <h1 className="my-5">
-        Todo Liste v.1.2.0{" "}
+        Todo Liste v.1.4.0{" "}
         <FontAwesomeIcon icon={faSun} size="1x" color="#616469" spin />
       </h1>
 
@@ -61,10 +67,12 @@ const ToDoList = () => {
 
       <ListGroup>
         {todos.map((todo) => (
-          <ToDoItem key={todo.id} todo={todo} handleToggle={handleToggle}/>
+          <ToDoItem key={todo.id} todo={todo} handleToggle={handleToggle} handleDelete={handleDelete}/>
         ))}
       </ListGroup>
-      <p className="my-3">Erledigte Todos: </p>
+      <p className="my-3">
+        Erledigte Todos: {todos.filter((todo) => todo.complete).length}
+      </p>
     </>
   );
 };
