@@ -2,6 +2,7 @@
 
 echo "VERCEL_ENV: $VERCEL_ENV"
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
+echo "VITE_DEPLOY_ENV: $VITE_DEPLOY_ENV"
 
 if [[ "$VERCEL_ENV" == "production"  && "$VERCEL_GIT_COMMIT_REF" == "main"  ]]; then
     # Proceed with the build
